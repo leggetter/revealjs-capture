@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var path = require( 'path' );
 var childProcess = require('child_process');
 var phantomjs = require('phantomjs');
