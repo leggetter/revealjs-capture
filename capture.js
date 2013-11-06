@@ -32,6 +32,15 @@ page.onLoadFinished = function() {
 
   log( 'loadFinished' );
 
+  var revealExists = page.evaluate( function() {
+    return ( typeof Reveal === 'object' );
+  } );
+
+  if( !revealExists ) {
+    log( 'A Reveal object cannot be detected on', slidesUrl, 'Aborting capture.' );
+    phantom.exit();
+  }
+
   log( 'waiting 10 seconds after initial load' );
   setTimeout( capturePage, 10000 );
 };
