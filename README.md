@@ -17,7 +17,7 @@ This adds the `revealjs-capture` executable to your `PATH`.
 
 You can then capture an image for each slide in your reveal.js presentation using:
 
-    revealjs-capture <slides_url>
+    revealjs-capture -s <slides_url>
 
 Example:
 
