@@ -16,6 +16,7 @@
   "author": "Phil Leggetter",
   "license": "MIT",
   "dependencies": {
-    "phantomjs": "~1.9.2-2"
+    "phantomjs": "~1.9.2-2",
+    "commander": "~2.0.0"
   }
 }
