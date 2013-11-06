@@ -21,6 +21,8 @@ if( !captureArgs.slides ) {
 var slidesUrl = captureArgs.slides;
 
 var page = require('webpage').create();
+var next = null;
+var isLastSlide = null;
 
 page.viewportSize = { width: 1600, height: 1200 };
 
@@ -28,7 +30,14 @@ log( 'opening page: ', slidesUrl );
 
 var captureCount = 0;
 var pageResourceCount = 0;
+var loadFinished = false;
 page.onLoadFinished = function() {
+
+  if( loadFinished ) {
+    log( '2nd load detected. Ignoring.');
+    return;
+  }
+  loadFinished = true;
 
   log( 'loadFinished' );
 
@@ -42,8 +51,47 @@ page.onLoadFinished = function() {
   }
 
   log( 'waiting 10 seconds after initial load' );
-  setTimeout( capturePage, 10000 );
+  // Give assets that load after the actual page load time to load
+  // TODO: detect this properly i.e. don't use a setTimeout
+  setTimeout( startCapture, 10000 );
 };
+
+function startCapture() {
+  configureReveal();
+
+  setGlobals();
+  
+  capturePage();
+}
+
+function configureReveal() {
+  // from: http://stefaanlippens.net/phantomjs-revealjs-slide-capture
+  page.evaluate(function() {
+    Reveal.configure({
+      'controls': false
+    });
+
+    // Apparently setting "transition" and "backgroundTransition" to "none"
+    // is enough to disable slide transitions, even if there are per-slide transitions.
+    Reveal.configure({
+      'transition': 'none',
+      'backgroundTransition': 'none'
+    });
+  });
+}
+
+function setGlobals() {
+  isLastSlide = function() {
+    return page.evaluate(function() {
+      return Reveal.isLastSlide();
+    });
+  };
+  next = function() {
+    return page.evaluate(function() {
+      return Reveal.next();
+    });
+  };
+}
 
 page.onResourceRequested = function() {
   ++pageResourceCount;
@@ -72,14 +120,8 @@ function capturePage() {
 
   log( 'captured ', captureCount, ' pages' );
 
-  var isLastSlide = page.evaluate( function() {
-    return Reveal.isLastSlide();
-  } );
-
-  if( !isLastSlide ) {
-    page.evaluate( function() {
-      Reveal.next();
-    } );
+  if( !isLastSlide() ) {
+    next();
   }
   else {
     phantom.exit();
