@@ -13,6 +13,11 @@ log( 'captureArgsJson', captureArgsJson );
 
 var captureArgs = JSON.parse( captureArgsJson );
 
+if( !captureArgs.slides ) {
+  log( 'slide parameter for URL reveal.js slides is required.' );
+  phantom.exit();
+}
+
 var slidesUrl = captureArgs.slides;
 
 var page = require('webpage').create();
