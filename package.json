@@ -1,6 +1,6 @@
 {
   "name": "revealjs-capture",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Capture Reveal.js slides as images",
   "repository" : {
     "type" : "git",
