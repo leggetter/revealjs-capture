@@ -21,7 +21,7 @@ You can then capture an image for each slide in your reveal.js presentation usin
 
 Example:
 
-    revealjs-capture -s leggetter.github.io/talks/realtime-tech-stack
+    revealjs-capture -s http://leggetter.github.io/talks/realtime-tech-stack
 
 ## Todo
 
