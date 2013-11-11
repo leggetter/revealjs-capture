@@ -8,16 +8,18 @@ var binPath = phantomjs.path;
 var program = require( 'commander' );
 
 program
-  .version('0.0.1')
-  .option('-s, --slides <url>', 'The url to the RevealJS slides')
+  .version( '0.0.2' )
+  .option( '-s, --slides <url>', 'The url to the RevealJS slides' )
+  .option( '-m, --max-captures [number]', 'The maximum number of slides to capture', -1 )
   .parse( process.argv );
 
 var captureArgs = {
-                    slides: program.slides
+                    slides: program.slides,
+                    maxCaptures: program.maxCaptures
                   };
 var captureArgsJson = JSON.stringify( captureArgs );
 var childArgs = [
-  path.join( __dirname, 'capture.js' ),
+  path.join( __dirname, 'lib/revealjs-capture.js' ),
   captureArgsJson
 ];
 
