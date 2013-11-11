@@ -11,11 +11,13 @@ program
   .version( '0.0.2' )
   .option( '-s, --slides <url>', 'The url to the RevealJS slides' )
   .option( '-m, --max-captures [number]', 'The maximum number of slides to capture', -1 )
+  .option( '-T, --slide-transition-wait [milliseconds]', 'The time to wait after a slide transition before capturing an image', 0 )
   .parse( process.argv );
 
 var captureArgs = {
                     slides: program.slides,
-                    maxCaptures: program.maxCaptures
+                    maxCaptures: program.maxCaptures,
+                    slideTransitionWait: program.slideTransitionWait
                   };
 var captureArgsJson = JSON.stringify( captureArgs );
 var childArgs = [
