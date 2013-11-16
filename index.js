@@ -8,16 +8,18 @@ var binPath = phantomjs.path;
 var program = require( 'commander' );
 
 program
-  .version( '0.0.2' )
+  .version( '0.0.3' )
   .option( '-s, --slides <url>', 'The url to the RevealJS slides' )
   .option( '-m, --max-captures [number]', 'The maximum number of slides to capture', -1 )
   .option( '-T, --slide-transition-wait [milliseconds]', 'The time to wait after a slide transition before capturing an image', 0 )
+  .option( '-o, --output [directory]', 'The directory where the capture images should be saved to', '' )
   .parse( process.argv );
 
 var captureArgs = {
                     slides: program.slides,
                     maxCaptures: program.maxCaptures,
-                    slideTransitionWait: program.slideTransitionWait
+                    slideTransitionWait: program.slideTransitionWait,
+                    output: program.output
                   };
 var captureArgsJson = JSON.stringify( captureArgs );
 var childArgs = [

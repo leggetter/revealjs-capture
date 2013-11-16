@@ -23,9 +23,18 @@ Example:
 
     revealjs-capture -s http://leggetter.github.io/talks/realtime-tech-stack
 
+## Release History
+
+### 0.0.3
+
+* Added `-o, --output` flag to allow the output location of the rendered slide captutes to be configured
+
+### 0.0.2
+
+* Hide navigation elements on slides
+* Refactor to be more OO
+
 ## Todo
 
 * Add resource load detection for each slide and only capture image when all resources are loaded
-* Make image capture file location configurable
-* Hide navigation indicators in each slide capture
 * Make it possible to capture only certain slide indices e.g. `revealjs-capture <url> --indices [ [5,5], [10.1] ]` (or something similar)
