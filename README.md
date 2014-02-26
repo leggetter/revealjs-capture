@@ -5,6 +5,12 @@ The purpose of this is to make it easy to capture each slide from a [reveal.js](
 * [Example 1](http://www.leggetter.co.uk/2013/10/28/history-background-benefits-use-cases-realtime.html)
 * [Example 2](http://www.leggetter.co.uk/2013/10/31/fundamentals-realtime-web-realtime-web-functionality.html)
 
+Or you can take the images and create a PDF from the output. Here's an example created by [Robin Hawkes](https://twitter.com/robhawkes):
+
+* [ViziCities: Making SimCity for the Real World](http://www.slideshare.net/robhawkes/vizicities-making-simcity-for-the-real-world)
+
+*Note: Robin had to use a [custom version of PhantomJS to support Web Fonts](https://github.com/ariya/phantomjs/issues/10592#issuecomment-34111576)*
+
 ## Install
 
 You can install globally using:
